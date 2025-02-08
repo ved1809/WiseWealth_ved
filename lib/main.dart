@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String message = "Connecting...";
+
+  Future<void> connectToServer() async {
+    String url = "http://127.0.0.1:5000/"; // Replace with actual PC IP http://192.168.0.111:5000
+
+    try {
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        setState(() {
+          message = data['message'];
+        });
+      } else {
+        setState(() {
+          message = "Error: Server responded with status code ${response.statusCode}";
+        });
+      }
+    } catch (e) {
+      setState(() {
+        message = "Connection failed: $e";
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    connectToServer();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text("Flask Connection Test")),
+        body: Center(child: Text(message, style: TextStyle(fontSize: 18))),
+      ),
+    );
+  }
+}
