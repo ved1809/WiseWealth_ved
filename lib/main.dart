@@ -1,57 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'splash_screen.dart';
+import 'routes.dart'; // Our separate routing file
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  String message = "Connecting...";
-
-  Future<void> connectToServer() async {
-    String url = "http://127.0.0.1:5000/"; // Replace with actual PC IP http://192.168.0.111:5000
-
-    try {
-      final response = await http.get(Uri.parse(url));
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        setState(() {
-          message = data['message'];
-        });
-      } else {
-        setState(() {
-          message = "Error: Server responded with status code ${response.statusCode}";
-        });
-      }
-    } catch (e) {
-      setState(() {
-        message = "Connection failed: $e";
-      });
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    connectToServer();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text("Flask Connection Test")),
-        body: Center(child: Text(message, style: TextStyle(fontSize: 18))),
+      debugShowCheckedModeBanner: false,
+      title: "Finance Manager",
+      // Set the initial route to the Splash Screen
+      initialRoute: SplashScreen.routeName,
+      // All our routes are defined in routes.dart
+      routes: appRoutes,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
     );
   }
