@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'splash_screen.dart';
 import 'login_page.dart';
 import 'signup_page.dart';
-import 'home_screen.dart';
-import 'assets_screen.dart';
-import 'transactions_screen.dart';
-import 'goals_screen.dart';
+import '../home/home_screen.dart';
+import '../home/assets/assets_screen.dart';
+import '../transactions/transactions_screen.dart';
+import '../goals/goals_screen.dart';
 
 final Map<String, WidgetBuilder> appRoutes = {
   SplashScreen.routeName: (context) => const SplashScreen(),

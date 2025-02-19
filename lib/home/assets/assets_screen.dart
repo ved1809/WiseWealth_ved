@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'assets_widgets.dart';
-import 'bottom_navbar.dart';
+import '../bottom_navbar.dart';
 
 class AssetsScreen extends StatelessWidget {
   static const String routeName = '/assets';

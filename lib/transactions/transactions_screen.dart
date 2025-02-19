@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'transactions_widgets.dart';
-import 'bottom_navbar.dart';
+import '../home/bottom_navbar.dart';
 
 class TransactionsScreen extends StatelessWidget {
   static const String routeName = '/transactions';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
-import 'assets_screen.dart';
-import 'transactions_screen.dart';
-import 'goals_screen.dart'; // Import GoalsScreen
+import 'assets/assets_screen.dart';
+import '../transactions/transactions_screen.dart';
+import '../goals/goals_screen.dart'; // Import GoalsScreen
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;

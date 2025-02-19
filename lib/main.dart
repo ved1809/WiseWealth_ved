@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'splash_screen.dart';
-import 'routes.dart'; // Our separate routing file
+import 'launch/splash_screen.dart';
+import 'launch/routes.dart'; // Our separate routing file
+import 'theme/theme.dart'; // Import the custom theme file
 
 void main() {
   runApp(const MyApp());
@@ -8,7 +9,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,9 +19,8 @@ class MyApp extends StatelessWidget {
       initialRoute: SplashScreen.routeName,
       // All our routes are defined in routes.dart
       routes: appRoutes,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      // Use the custom theme from AppTheme
+      theme: AppTheme.themeData,
     );
   }
 }

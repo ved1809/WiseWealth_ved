@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'goals_widgets.dart';
-import 'bottom_navbar.dart';
+import '../home/bottom_navbar.dart';
 
 class GoalsScreen extends StatelessWidget {
   static const String routeName = '/goals';
