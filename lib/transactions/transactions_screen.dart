@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'transactions_widgets.dart';
-import 'bottom_navbar.dart';
+import '../home/bottom_navbar.dart';
+import 'add_transaction.dart';
 
 class TransactionsScreen extends StatelessWidget {
   static const String routeName = '/transactions';
@@ -14,26 +15,27 @@ class TransactionsScreen extends StatelessWidget {
         title: const Text("Transactions"),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: const [
-            TransactionSummarySection(),
-            SizedBox(height: 16),
-            FilterSection(),
-            SizedBox(height: 16),
-            RecentTransactionsSection(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: const [
+              TransactionSummarySection(),
+              SizedBox(height: 16),
+              FilterSection(),
+              SizedBox(height: 16),
+              RecentTransactionsSection(),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Tap handling: Add Transaction button tapped.
-          print("Add Transaction tapped!");
+          Navigator.pushNamed(context, AddTransactionScreen.routeName);
         },
         child: const Icon(Icons.add),
       ),
-      // Set currentIndex to 2 for Transactions in the bottom nav.
       bottomNavigationBar: const BottomNavBar(currentIndex: 2),
     );
   }

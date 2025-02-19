@@ -43,6 +43,14 @@ class GoalsSummarySection extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 16),
+          // Progress Bar
+          const LinearProgressIndicator(
+            value: 0.75, // Example progress value
+            minHeight: 8,
+            color: Colors.green,
+            backgroundColor: Color.fromARGB(89, 129, 245, 133),
+          ),
         ],
       ),
     );
@@ -67,7 +75,7 @@ class ActiveGoalsSection extends StatelessWidget {
           title: "Vacation Fund",
           targetAmount: "\$5,000",
           savedAmount: "\$2,000",
-          completion: "40% Complete",
+          completion: 0.4,
           targetDate: "December 2025",
         ),
         const SizedBox(height: 8),
@@ -75,7 +83,7 @@ class ActiveGoalsSection extends StatelessWidget {
           title: "Emergency Fund",
           targetAmount: "\$3,000",
           savedAmount: "\$1,200",
-          completion: "40% Complete",
+          completion: 0.4,
           targetDate: "October 2025",
         ),
       ],
@@ -88,7 +96,7 @@ class ActiveGoalItem extends StatelessWidget {
   final String title;
   final String targetAmount;
   final String savedAmount;
-  final String completion;
+  final double completion;
   final String targetDate;
 
   const ActiveGoalItem({
@@ -111,31 +119,36 @@ class ActiveGoalItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title and target amount with overflow handling
           Row(
             children: [
               Expanded(
                 child: Text(
-                  "$title ($targetAmount)",
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  title,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
+              ),
+              Text(
+                targetAmount,
+                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
             ],
           ),
           const SizedBox(height: 4),
-          // Saved amount and completion percentage
           Text(
-            "Saved: $savedAmount ($completion)",
+            "Saved: $savedAmount",
             style: const TextStyle(fontSize: 14),
           ),
           const SizedBox(height: 4),
-          // Target date information
           Text(
             "Target Date: $targetDate",
             style: const TextStyle(fontSize: 14, color: Colors.grey),
+          ),
+          const SizedBox(height: 8),
+          LinearProgressIndicator(
+            value: completion,
+            minHeight: 8,
+            color: Colors.green,
+            backgroundColor: Colors.green.shade100,
           ),
         ],
       ),
@@ -193,20 +206,17 @@ class CompletedGoalItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Title with overflow handling
           Expanded(
             child: Text(
               "$title: Completed",
-              style: const TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Text(
-            "Goal: $targetAmount",
-            style: const TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold),
+            targetAmount,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ],
       ),
