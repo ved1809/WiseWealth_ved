@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'transactions_widgets.dart';
+import 'assets_widgets.dart';
 import '../home/bottom_navbar.dart';
-import 'add_transaction.dart';
+import 'add_asset.dart';
 
-class TransactionsScreen extends StatelessWidget {
-  static const String routeName = '/transactions';
+class AssetsScreen extends StatelessWidget {
+  static const String routeName = '/assets';
 
-  const TransactionsScreen({super.key});
+  const AssetsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Transactions"),
+        title: const Text("Your Assets"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -21,22 +21,24 @@ class TransactionsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const [
-              TransactionSummarySection(),
+              TotalAssetsSection(),
               SizedBox(height: 16),
-              FilterSection(),
+              PieChartSection(),
               SizedBox(height: 16),
-              RecentTransactionsSection(),
+              AssetGrowthGraphSection(),
+              SizedBox(height: 16),
+              RecentAssetsSection(),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, AddTransactionScreen.routeName);
+          Navigator.pushNamed(context, AddAssetScreen.routeName);
         },
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 2),
+      bottomNavigationBar: const BottomNavBar(currentIndex: 1),
     );
   }
 }

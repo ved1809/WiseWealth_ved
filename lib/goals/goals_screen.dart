@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'goals_widgets.dart';
+import 'new_goal_screen.dart'; // Add this import
 import '../home/bottom_navbar.dart';
 
 class GoalsScreen extends StatelessWidget {
@@ -26,12 +27,18 @@ class GoalsScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          // Tap handling: Add New Goal button tapped.
-          print("Add New Goal tapped!");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const NewGoalScreen(),
+            ),
+          );
         },
-        child: const Icon(Icons.add),
+        label: const Text("Add Goal"),
+        icon: const Icon(Icons.add),
+        backgroundColor: Colors.green,
       ),
       bottomNavigationBar: const BottomNavBar(currentIndex: 3),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
-import 'assets/assets_screen.dart';
+import '../assets/assets_screen.dart';
 import '../transactions/transactions_screen.dart';
 import '../goals/goals_screen.dart'; // Import GoalsScreen
 

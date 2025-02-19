@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_widgets.dart';
 import 'bottom_navbar.dart';
-import 'side_menu.dart'; // Import the side_menu.dart file
+import 'side_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
@@ -15,22 +15,23 @@ class HomeScreen extends StatelessWidget {
         title: const Text("Finance Manager"),
         centerTitle: true,
       ),
-      drawer: const SideMenu(), // Add the navigation drawer here.
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Header Section
-            const HeaderSection(),
-            const SizedBox(height: 16),
-            // Spending Summary Section
-            const SpendingSummarySection(),
-            const SizedBox(height: 16),
-            // Buttons Section
-            const ButtonsSection(),
-            const SizedBox(height: 16),
-          ],
+      drawer: const SideMenu(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Header Section
+              const HeaderSection(),
+              const SizedBox(height: 16),
+              // Spending Summary Section
+              const SpendingSummarySection(),
+              const SizedBox(height: 16),
+              // Buttons Section
+              ButtonsSection(), // Removed `const` to add navigation
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavBar(currentIndex: 0),
