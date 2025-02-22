@@ -1,26 +1,56 @@
 import 'package:flutter/material.dart';
 import 'launch/splash_screen.dart';
-import 'launch/routes.dart'; // Our separate routing file
-import 'theme/theme.dart'; // Import the custom theme file
+import 'launch/routes.dart';
+import 'theme/theme.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  String connectionMessage = await connectToServer();
+  runApp(MyApp(connectionMessage: connectionMessage));
+}
+
+Future<String> connectToServer() async {
+  String url = "http://127.0.0.1:5000/"; // Replace with actual server IP
+
+  try {
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      return data['message'];
+    } else {
+      return "Error: Server responded with status code ${response.statusCode}";
+    }
+  } catch (e) {
+    return "Connection failed: $e";
+  }
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final String connectionMessage;
+
+  const MyApp({super.key, required this.connectionMessage});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Finance Manager",
-      // Set the initial route to the Splash Screen
-      initialRoute: SplashScreen.routeName,
-      // All our routes are defined in routes.dart
-      routes: appRoutes,
-      // Use the custom theme from AppTheme
       theme: AppTheme.themeData,
+      initialRoute: SplashScreen.routeName,
+      onGenerateRoute: (settings) {
+        if (settings.name == SplashScreen.routeName) {
+          return MaterialPageRoute(
+            builder: (context) => SplashScreen(connectionMessage: connectionMessage),
+          );
+        }
+        if (appRoutes.containsKey(settings.name)) {
+          return MaterialPageRoute(builder: appRoutes[settings.name]!);
+        }
+        return null; // Return null if no route found
+      },
     );
   }
 }
