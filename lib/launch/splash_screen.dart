@@ -3,9 +3,10 @@ import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = '/splash';
-  
-  const SplashScreen({super.key});
-  
+  final String connectionMessage;
+
+  const SplashScreen({super.key, required this.connectionMessage});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -14,12 +15,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // Simulate a delay for the splash screen, then navigate to the Login page.
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, '/login');
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,6 +37,12 @@ class _SplashScreenState extends State<SplashScreen> {
             const Text(
               'Your Personalized Manager',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              widget.connectionMessage, // Show Flask connection status
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
