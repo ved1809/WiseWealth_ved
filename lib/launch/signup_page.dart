@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../launch/login_page.dart';
+import '../animations/transitions.dart'; // Import transitions
 
 class SignupPage extends StatelessWidget {
   static const String routeName = '/signup';
@@ -53,8 +55,8 @@ class SignupPage extends StatelessWidget {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
-                  // On signup submission, navigate back to the Login page.
-                  Navigator.pushReplacementNamed(context, '/login');
+                  // Navigate to Login with Slide Transition
+                  Navigator.pushReplacement(context, slideTransition(const LoginPage(), fromRight: false));
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -64,8 +66,8 @@ class SignupPage extends StatelessWidget {
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
-                  // Navigate back to the Login page.
-                  Navigator.pushReplacementNamed(context, '/login');
+                  // Navigate back to Login with Slide Transition
+                  Navigator.pushReplacement(context, slideTransition(const LoginPage(), fromRight: false));
                 },
                 child: const Text(
                   "Already have an account? Login",

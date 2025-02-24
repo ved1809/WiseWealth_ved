@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../launch/signup_page.dart';
+import '../home/home_screen.dart';
+import '../animations/transitions.dart'; // Import transitions
 
 class LoginPage extends StatelessWidget {
   static const String routeName = '/login';
@@ -43,8 +46,8 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
-                  // On successful login, navigate to HomeScreen.
-                  Navigator.pushReplacementNamed(context, '/home');
+                  // Navigate to Home with Fade Transition
+                  Navigator.pushReplacement(context, fadeTransition(const HomeScreen()));
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
@@ -54,8 +57,8 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () {
-                  // Navigate to Signup page.
-                  Navigator.pushNamed(context, '/signup');
+                  // Navigate to Signup with Slide Transition
+                  Navigator.push(context, slideTransition(const SignupPage(), fromRight: true));
                 },
                 child: const Text(
                   "Don't have an account? Sign Up",
