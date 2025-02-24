@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'home_widgets.dart';
 import 'bottom_navbar.dart';
 import 'side_menu.dart';
+import '../animations/animations.dart'; // Adjust path as needed
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
@@ -22,14 +23,14 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Header Section
-              const HeaderSection(),
+              // Header Section with fade-in animation
+              fadeIn(child: const HeaderSection()),
               const SizedBox(height: 16),
-              // Spending Summary Section
-              const SpendingSummarySection(),
+              // Spending Summary Section with slide-in from bottom animation
+              slideInFromBottom(child: const SpendingSummarySection()),
               const SizedBox(height: 16),
-              // Buttons Section
-              ButtonsSection(), // Removed `const` to add navigation
+              // Buttons Section with scale-in animation
+              scaleIn(child: ButtonsSection()),
             ],
           ),
         ),

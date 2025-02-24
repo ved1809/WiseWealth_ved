@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'goals_widgets.dart';
-import 'new_goal_screen.dart'; // Add this import
+import 'new_goal_screen.dart';
 import '../home/bottom_navbar.dart';
+import '../animations/animations.dart'; // Import reusable animations
+import '../animations/transitions.dart'; // Import reusable animations
 
 class GoalsScreen extends StatelessWidget {
   static const String routeName = '/goals';
@@ -18,12 +20,15 @@ class GoalsScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
-          children: const [
-            GoalsSummarySection(),
-            SizedBox(height: 16),
-            ActiveGoalsSection(),
-            SizedBox(height: 16),
-            CompletedGoalsSection(),
+          children: [
+            // Goals Summary Section with a fade-in effect
+            fadeIn(child: const GoalsSummarySection()),
+            const SizedBox(height: 16),
+            // Active Goals Section slides in from bottom
+            slideInFromBottom(child: const ActiveGoalsSection()),
+            const SizedBox(height: 16),
+            // Completed Goals Section scales in
+            scaleIn(child: const CompletedGoalsSection()),
           ],
         ),
       ),
@@ -31,9 +36,7 @@ class GoalsScreen extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => const NewGoalScreen(),
-            ),
+            slideUpTransition(const NewGoalScreen()), // Smooth slide-up transition
           );
         },
         label: const Text("Add Goal"),

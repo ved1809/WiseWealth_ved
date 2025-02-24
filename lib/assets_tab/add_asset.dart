@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'assets_screen.dart';
+import 'package:wisewealth/animations/transitions.dart';
 
 class AddAssetScreen extends StatelessWidget {
   static const String routeName = '/add-asset';
@@ -46,10 +48,14 @@ class AddAssetScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // Save logic here
+                Navigator.push(
+                  context,
+                  slideDownTransition(const AssetsScreen()), // Smooth slide-down transition
+                );
               },
               child: const Text("Add Asset"),
             ),
+
           ],
         ),
       ),

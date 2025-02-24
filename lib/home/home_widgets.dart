@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import './add_expense.dart';
 import './view_bills.dart';
+import '../animations/animations.dart'; // Import reusable animations
+import '../animations/transitions.dart';
 
 class HeaderSection extends StatelessWidget {
   const HeaderSection({super.key});
@@ -82,13 +84,19 @@ class ButtonsSection extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/add-expense');
+            Navigator.push(
+              context,
+              slideUpTransition(const AddExpenseScreen()), // Smooth fade transition
+            );
           },
           child: const Text("Add Expense"),
         ),
         OutlinedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/view-bills');
+            Navigator.push(
+              context,
+              slideUpTransition(const ViewBillsScreen()), // Slide-in from right
+            );
           },
           child: const Text("View Bills"),
         ),
@@ -96,3 +104,4 @@ class ButtonsSection extends StatelessWidget {
     );
   }
 }
+

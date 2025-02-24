@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import '../assets_tab/assets_screen.dart';
 import '../transactions/transactions_screen.dart';
-import '../goals/goals_screen.dart'; // Import GoalsScreen
+import '../goals/goals_screen.dart';
+import '../animations/transitions.dart'; // Import transitions
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -18,20 +19,32 @@ class BottomNavBar extends StatelessWidget {
       unselectedItemColor: Colors.grey,
       onTap: (index) {
         if (index == currentIndex) return;
+
+        Widget nextScreen;
         switch (index) {
           case 0:
-            Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+            nextScreen = const HomeScreen();
             break;
           case 1:
-            Navigator.pushReplacementNamed(context, AssetsScreen.routeName);
+            nextScreen = const AssetsScreen();
             break;
           case 2:
-            Navigator.pushReplacementNamed(context, TransactionsScreen.routeName);
+            nextScreen = const TransactionsScreen();
             break;
           case 3:
-            Navigator.pushReplacementNamed(context, GoalsScreen.routeName);
+            nextScreen = const GoalsScreen();
             break;
+          default:
+            return;
         }
+
+        // Determine the transition direction
+        bool slideFromRight = index > currentIndex;
+
+        Navigator.pushReplacement(
+          context,
+          slideTabTransition(nextScreen, fromRight: slideFromRight),
+        );
       },
       items: const [
         BottomNavigationBarItem(
