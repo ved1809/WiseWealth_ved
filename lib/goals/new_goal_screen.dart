@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'goals_screen.dart';
+import 'package:wisewealth/animations/transitions.dart';
 
 class NewGoalScreen extends StatelessWidget {
   const NewGoalScreen({super.key});
@@ -42,12 +44,15 @@ class NewGoalScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // Handle adding goal
+                Navigator.push(
+                  context,
+                  slideDownTransition(const GoalsScreen()), // Transition to Goals Screen
+                );
                 print("Goal added!");
-                Navigator.pop(context);
               },
               child: const Text("Add Goal"),
             ),
+
           ],
         ),
       ),

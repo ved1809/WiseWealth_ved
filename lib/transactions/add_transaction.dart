@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wisewealth/transactions/transactions_screen.dart';
+import '../animations/transitions.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   static const String routeName = '/add-transaction';
@@ -83,7 +85,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  // Add transaction logic
+                  Navigator.push(
+                    context,
+                    slideDownTransition(const TransactionsScreen()), // Transition to Home Screen
+                  );
                 },
                 child: const Text("Add Transaction"),
               ),

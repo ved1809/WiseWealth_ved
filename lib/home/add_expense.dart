@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
+import 'package:wisewealth/animations/transitions.dart';
 
 class AddExpenseScreen extends StatelessWidget {
   static const String routeName = '/add-expense';
@@ -33,10 +35,14 @@ class AddExpenseScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // Save logic here
+                Navigator.push(
+                  context,
+                  slideDownTransition(const HomeScreen()), // Transition to Home Screen
+                );
               },
               child: const Text("Add Expense"),
             ),
+
           ],
         ),
       ),
