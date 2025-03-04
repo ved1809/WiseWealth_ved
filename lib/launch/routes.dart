@@ -10,6 +10,8 @@ import '../transactions/add_transaction.dart';
 import '../goals/goals_screen.dart';
 import '../home/add_expense.dart';
 import '../home/view_bills.dart';
+import '../side_menu/profile.dart'; // Import ProfilePage
+import '../side_menu/about.dart'; // Import AboutPage
 
 final Map<String, WidgetBuilder> appRoutes = {
   LoginPage.routeName: (context) => const LoginPage(),
@@ -22,6 +24,8 @@ final Map<String, WidgetBuilder> appRoutes = {
   GoalsScreen.routeName: (context) => const GoalsScreen(),
   ViewBillsScreen.routeName: (context) => const ViewBillsScreen(),
   AddExpenseScreen.routeName: (context) => const AddExpenseScreen(),
+  ProfilePage.routeName: (context) => const ProfilePage(), // ✅ Added ProfilePage
+  AboutPage.routeName: (context) => const AboutPage(), // ✅ Added AboutPage
 };
 
-// ❌ Removed `SplashScreen` from this map because it needs dynamic arguments
+// ❌ Removed `SplashScreen` from this map because it needs dynamic arguments.
