@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../animations/animations.dart'; // Import animations
+import '../animations/transitions.dart'; // Import animations
+import '../side_menu/profile.dart'; // Import ProfilePage
+import '../side_menu/about.dart';   // Import AboutPage
 
 class SideMenu extends StatelessWidget {
   const SideMenu({super.key});
@@ -44,7 +47,8 @@ class SideMenu extends StatelessWidget {
               title: const Text("Profile"),
               onTap: () {
                 Navigator.pop(context); // Close the drawer.
-                Navigator.pushNamed(context, '/profile');
+                // Navigate to ProfilePage with transition
+                Navigator.of(context).push(fadeTransition(ProfilePage()));
               },
             ),
           ),
@@ -54,8 +58,9 @@ class SideMenu extends StatelessWidget {
               leading: const Icon(Icons.info),
               title: const Text("About"),
               onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/about');
+                Navigator.pop(context); // Close the drawer.
+                // Navigate to AboutPage with transition
+                Navigator.of(context).push(fadeTransition(AboutPage()));
               },
             ),
           ),
@@ -65,7 +70,7 @@ class SideMenu extends StatelessWidget {
               leading: const Icon(Icons.logout),
               title: const Text("Logout"),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pop(context); // Close the drawer.
                 Navigator.pushReplacementNamed(context, '/splash');
               },
             ),
