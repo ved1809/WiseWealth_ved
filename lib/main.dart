@@ -12,7 +12,7 @@ void main() async {
 }
 
 Future<String> connectToServer() async {
-  String url = "http://127.0.0.1:5000/"; // Replace with actual server IP
+  String url = "https://flask-newsapi-render.onrender.com"; // Replace with actual server IP
 
   try {
     final response = await http.get(Uri.parse(url));
